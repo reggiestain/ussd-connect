@@ -8,14 +8,14 @@
         </div>
     </div>
     <div class="row">        
-        <div class="col-lg-6">
+        <div class="col-md-12">
             <div class="alert-message"></div>
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="text-muted bootstrap-admin-box-title"><strong>Session Table</strong> </div>
                 </div>                
                 <div class="panel-body">
-                 <table id="example" class="table table-striped">
+                 <table id="example" class="table-responsive table-hover">
                         <thead>
                             <tr>                               
                                 <th>Session ID</th>                                
@@ -39,13 +39,10 @@
                         </tbody>
                         @endforeach
                     </table>  
-                </div>
-                <div class="panel-footer">
-                    
-                </div>                
+                </div>            
             </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-md-12">
             <div class="alert-message"></div>
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -66,19 +63,16 @@
 
 <script>
     $(document).ready(function () {
-        //Datetimepicker
-        $('#start-time').datetimepicker({format: 'HH:mm:ss'});
-        $('#end-time').datetimepicker({format: 'HH:mm:ss'});
-        
+        $('#example').DataTable();
         //Load highchart
         $.ajax({
-            url: ,
-            type: "GET",
-            async: true,
-            dataType: 'json',
+            //url: ,
+            //type: "GET",
+            //async: true,
+            //dataType: 'json',
             cache: false,
             beforeSend: function () {
-                    $("#container").html("<button class='btn btn-default btn-lg'><i class='fa fa-spinner fa-spin'></i> Loading</button>");
+                    $("#container").html("<button class='btn btn-default btn-lg'>Loading...</button>");
                 },
             success: function (results) {
                 Highcharts.setOptions({
