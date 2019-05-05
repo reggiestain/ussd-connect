@@ -19,14 +19,14 @@ class SessionController extends Controller {
         switch ($type) {
             case '1':
                 $response = $this->start($request);
-                $this->send($response);
+                $this->sendResponse($response);
                 break;
             case '2':
                 $response = $this->reply($request);
-                $this->send($response);
+                $this->sendResponse($response);
                 break;
             default:
-                $this->send($this->init_msg());
+                $this->sendResponse($this->init_msg());
         }
     }
 
@@ -35,8 +35,7 @@ class SessionController extends Controller {
         if (isset($text)) {
             if ($text == "") {
                 return $this->init_msg();
-            }
-           
+            }           
             if (in_array($text, array("*120*12345#","*123*12345#"))) {                
                 $response = $this->store($request);
                 if ($response === true) {
@@ -66,7 +65,7 @@ class SessionController extends Controller {
         }
     }
 
-    public function send($response) {
+    public function sendResponse($response) {
         header('Content-type: text/plain');
         echo $response;
     }
@@ -117,8 +116,9 @@ class SessionController extends Controller {
      * @param  \App\Session  $session
      * @return \Illuminate\Http\Response
      */
-    public function show(Session $session) {
-        return $session;
+    public function show() {
+        $sessions = Session::all();
+        return view('pages.home', compact('sessions'));
     }
 
     /**
