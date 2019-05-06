@@ -76,7 +76,7 @@ class SessionController extends Controller {
     }
 
     public function menu() {
-        return "Please enter your Full Name. \r\n\r\nExample Chris Joe and NOT C. Joe\r\n\r\n"
+        return "Please enter your Full Name. \r\nExample Chris Joe and NOT C. Joe\r\n"
             . "1. Session is active.";
     }
 
@@ -149,7 +149,7 @@ class SessionController extends Controller {
                 $session->surname = $name_parts[1];
                 $session->type = $request->input('type');
                 if ($session->save()) {
-                    return "Your name has been saved successfully. \r\n\r\n0. Session is terminated.";
+                    return "Your name has been saved successfully. \r\n0. Session is terminated.";
                 }
                 return $this->menu();
             } elseif($session->type === 2) {

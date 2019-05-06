@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
  * 
  */
 
-Route::get('/ussd', 'SessionController@index');
+Route::get('/ussd/', 'SessionController@index');
 
 Route::post('/ussd', 'SessionController@store')->name('session.store');
 

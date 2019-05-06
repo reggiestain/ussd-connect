@@ -12,8 +12,7 @@
         <link rel="stylesheet" href="{{URL::asset('css/bootstrap-admin-theme.css')}}">
         <link rel="stylesheet" href="{{URL::asset('css/bootstrap-admin-theme-change-size.css')}}">
         <link rel="stylesheet" href="{{URL::asset('css/highcharts.css')}}">
-        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-        <!--<script src="{{URL::asset('js/jquery.js') }}"></script>-->
+        <script src="{{URL::asset('js/jquery.js') }}"></script>
         <script src="{{URL::asset('js/bootstrap.min.js') }}"></script>
         <script src="{{URL::asset('js/jquery.dataTables.js') }}"></script>
         <script src="{{URL::asset('js/Datatable.bootstrap.js') }}"></script>

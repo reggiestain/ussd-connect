@@ -57,10 +57,11 @@
                     <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
                     <table id="datatable">
-                        <thead>
+                        <thead>                              
                             <tr>
-                                                               
-                            </tr>
+                            <th></th>
+                            <th>Total Session(s) </th>  
+                            </tr>                             
                         </thead>
                                                      
                         <tbody>
@@ -106,7 +107,7 @@ $(document).ready(function () {
                 },
                 tooltip: {
                     formatter: function () {
-                        return '<b>' + this.series.name + '</b><br/>' +
+                        return '<b>' + this.series.name + '</b><br/>'+
                                 this.point.y + ' ' + this.point.name.toLowerCase();
                     }
                 }
