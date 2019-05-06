@@ -87,7 +87,7 @@ class SessionController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($request) {
+    public function store(Request $request) {
 
         $session = Session::where('sessionid', $request->input('sessionid'))->first();
         if ($session === null) {
