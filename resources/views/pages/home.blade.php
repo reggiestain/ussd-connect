@@ -52,13 +52,10 @@
                 <div class="panel-heading">
                     <div class="text-muted bootstrap-admin-box-title"><strong>Session Graph</strong> </div>
                 </div>
-                <div class="panel-body">
-                    <div id="container" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto">
-
-                    </div>
+                <div class="panel-body">                    
                     <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
-                    <table id="datatable" style="display: none">
+                    <table id="datatable">
                         <thead>
                             <tr>
                                                                
