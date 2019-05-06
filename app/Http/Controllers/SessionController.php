@@ -73,7 +73,7 @@ class SessionController extends Controller {
     }
 
     public function init_msg() {
-        return "Dial *123*12345# or url encoded %2A120%2A12345%23 to initiate the USSD session.";
+        return "Dial url encoded %2A120%2A8800%2A404%23 to initiate the USSD session.";
     }
 
     public function menu() {
