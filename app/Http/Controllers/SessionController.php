@@ -130,7 +130,7 @@ class SessionController extends Controller {
     
     public function chart() {
         $mtn = DB::table('sessions')->select(DB::raw('count(*) as network_count, mno'))
-                    ->where('type','=',2)->groupBy('mno')->get();
+                    ->groupBy('mno')->get();
                     
         
         dd($mtn);
