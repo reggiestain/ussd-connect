@@ -17,6 +17,7 @@ class SessionController extends Controller {
     public function index(Request $request) {
   
         $type = $request->input('type');
+        var_dump($request->input('request'));exit();
         switch ($type) {
             case '1':
                 $response = $this->start($request);
