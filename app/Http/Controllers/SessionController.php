@@ -38,7 +38,7 @@ class SessionController extends Controller {
             if ($text == "") {
                 return $this->init_msg();
             }           
-            if (in_array($text, array("*120*1234#","*123*1234#"))) {                
+            if (in_array($text, array("*120*8800*404#"))) {                
                 $response = $this->store($request);
                 if ($response === true) {
                     return $this->menu();
