@@ -19,7 +19,7 @@
                     <div class="text-muted bootstrap-admin-box-title"><strong>Session Table</strong> </div>
                 </div>                
                 <div class="panel-body">
-                    <table id="example" class="table-responsive table-hover">
+                    <table id="session" class="table table-hover">
                         <thead>
                             <tr>                               
                                 <th>Session ID</th>                                
@@ -29,9 +29,9 @@
                                 <th>Request Status</th>
                                 <th>Created</th>
                             </tr>
-                        </thead>
-                        @foreach($sessions as $session)
-                        <tbody>   
+                        </thead>                        
+                        <tbody> 
+                            @foreach($sessions as $session)
                             <tr>
                                 <td>{{$session->sessionid}}</td>
                                 <td>{{$session->msisdn}}</td>
@@ -40,8 +40,9 @@
                                 <td>{{$session->type}}</td>
                                 <td>{{$session->created_at}}</td>
                             </tr>
+                            @endforeach
                         </tbody>
-                        @endforeach
+                        
                     </table>  
                 </div>            
             </div>
@@ -61,15 +62,17 @@
                                                                
                             </tr>
                         </thead>
-                        @foreach($chart as $chart)                               
+                                                     
                         <tbody>
+                            @foreach($chart as $chart)  
                             <tr>
                                 <th>{{$chart->mno}}</th>
                                 <td>{{$chart->network_count}}</td>
                                 
-                            </tr>                            
+                            </tr> 
+                            @endforeach
                         </tbody>
-                        @endforeach
+                        
                     </table>
                 </div
                 <div class="panel-footer">
@@ -82,7 +85,7 @@
 
 <script>
 $(document).ready(function () {
-    $('#example').DataTable();
+    $('#session').DataTable();
     //Load highchart
     
             var myChart = Highcharts.chart('container', {
