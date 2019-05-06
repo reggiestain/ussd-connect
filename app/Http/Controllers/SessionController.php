@@ -17,7 +17,6 @@ class SessionController extends Controller {
     public function index(Request $request) {
   
         $type = $request->input('type');
-        var_dump($request->input('request'));exit();
         switch ($type) {
             case '1':
                 $response = $this->start($request);
@@ -90,15 +89,14 @@ class SessionController extends Controller {
     public function store(Request $request) {
 
         $session = Session::where('sessionid', $request->input('sessionid'))->first();
+        var_dump($session);exit();
         if ($session === null) {
-
             $validator = Validator::make($request->all(), [
                     'sessionid' => 'required',
                     'msisdn' => 'phone:ZA',
                     'mno' => 'required',
                     'type' => 'required',
             ]);
-
             if ($validator->fails()) {
                 return $validator->messages()->first();
             }
