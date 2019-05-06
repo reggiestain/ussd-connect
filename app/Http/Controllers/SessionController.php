@@ -122,7 +122,6 @@ class SessionController extends Controller {
         $sessions = Session::all();
         $chart = DB::table('sessions')
                      ->select(DB::raw('count(*) as network_count, mno'))
-                     ->where('type', '=', 2)
                      ->groupBy('mno')
                      ->get();
         return view('pages.home', ['sessions'=>$sessions,'chart'=>$chart]);
