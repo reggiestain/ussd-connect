@@ -15,8 +15,9 @@ class SessionController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request) {
-        $text = $request->input('request');
+  
         $type = $request->input('type');
+        
         switch ($type) {
             case '1':
                 $response = $this->start($request);
@@ -37,7 +38,7 @@ class SessionController extends Controller {
             if ($text == "") {
                 return $this->init_msg();
             }           
-            if (in_array($text, array("*120*12345#","*123*12345#"))) {                
+            if (in_array($text, array("*120*1234#","*123*1234#"))) {                
                 $response = $this->store($request);
                 if ($response === true) {
                     return $this->menu();
