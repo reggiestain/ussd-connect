@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class SessionController extends Controller {
@@ -118,7 +119,20 @@ class SessionController extends Controller {
      */
     public function show() {
         $sessions = Session::all();
-        return view('pages.home', compact('sessions'));
+        $chart = DB::table('sessions')
+                     ->select(DB::raw('count(*) as network_count, mno'))
+                     ->where('type', '=', 2)
+                     ->groupBy('mno')
+                     ->get();
+        return view('pages.home', ['sessions'=>$sessions,'chart'=>$chart]);
+    }
+    
+    public function chart() {
+        $mtn = DB::table('sessions')->select(DB::raw('count(*) as network_count, mno'))
+                    ->where('type','=',2)->groupBy('mno')->get();
+                    
+        
+        dd($mtn);
     }
 
     /**

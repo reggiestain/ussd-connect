@@ -1,5 +1,9 @@
 @extends('layout.app')
 @section('content')
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
 <div class="col-md-12">
     <div class="row">
         <div class="col-lg-12">
@@ -15,7 +19,7 @@
                     <div class="text-muted bootstrap-admin-box-title"><strong>Session Table</strong> </div>
                 </div>                
                 <div class="panel-body">
-                 <table id="example" class="table-responsive table-hover">
+                    <table id="example" class="table-responsive table-hover">
                         <thead>
                             <tr>                               
                                 <th>Session ID</th>                                
@@ -29,12 +33,12 @@
                         @foreach($sessions as $session)
                         <tbody>   
                             <tr>
-                             <td>{{$session->sessionid}}</td>
-                             <td>{{$session->msisdn}}</td>
-                             <td>{{$session->name.' '.$session->surname}}</td>
-                             <td>{{$session->mno}}</td>
-                             <td>{{$session->type}}</td>
-                             <td>{{$session->created_at}}</td>
+                                <td>{{$session->sessionid}}</td>
+                                <td>{{$session->msisdn}}</td>
+                                <td>{{$session->name.' '.$session->surname}}</td>
+                                <td>{{$session->mno}}</td>
+                                <td>{{$session->type}}</td>
+                                <td>{{$session->created_at}}</td>
                             </tr>
                         </tbody>
                         @endforeach
@@ -49,9 +53,27 @@
                     <div class="text-muted bootstrap-admin-box-title"><strong>Session Graph</strong> </div>
                 </div>
                 <div class="panel-body">
-                    <div id="container" style="width:100%; height:210px;">
+                    <div id="container" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto">
 
                     </div>
+                    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+                    <table id="datatable" style="display: none">
+                        <thead>
+                            <tr>
+                                                               
+                            </tr>
+                        </thead>
+                        @foreach($chart as $chart)                               
+                        <tbody>
+                            <tr>
+                                <th>{{$chart->mno}}</th>
+                                <td>{{$chart->network_count}}</td>
+                                
+                            </tr>                            
+                        </tbody>
+                        @endforeach
+                    </table>
                 </div
                 <div class="panel-footer">
 
@@ -62,63 +84,35 @@
 </div>
 
 <script>
-    $(document).ready(function () {
-        $('#example').DataTable();
-        //Load highchart
-        $.ajax({
-            //url: ,
-            //type: "GET",
-            //async: true,
-            //dataType: 'json',
-            cache: false,
-            beforeSend: function () {
-                    $("#container").html("<button class='btn btn-default btn-lg'>Loading...</button>");
+$(document).ready(function () {
+    $('#example').DataTable();
+    //Load highchart
+    
+            var myChart = Highcharts.chart('container', {
+                data: {
+                    table: 'datatable'
                 },
-            success: function (results) {
-                Highcharts.setOptions({
-                    global: {
-                         timezone: 'Africa/Harare'
-                    }
-                });
-                var myChart = Highcharts.chart('container', {
-                    chart: {
-                        renderTo: 'Some NAME',
-                        type: 'columnrange',
-                        inverted: true
-                    },
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Mobile Network Session Aggregate'
+                },
+                yAxis: {
+                    allowDecimals: false,
                     title: {
-                        text: results.hrs
-                    },
-                    
-                    yAxis: {
-                        type: 'datetime',
-                        title: {
-                            text: 'time'
-                        }
-                    },
-                    legend: {
-                        enabled: false
-                    },
-                    tooltip: {
-                        shared: true,
-                        valueSuffix: '',
-                        formatter: function () {
-                            return '</b> From:<b>' + Highcharts.dateFormat('%H:%M', this.points[0].point.low) + '</b> To:<b>' + Highcharts.dateFormat('%H:%M', this.points[0].point.high);
-                        }
-                    },
-                    series: [{
-                            name: 'Testtime',
-                            data: results.data
-                        }]
-                });
-
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                    alert(errorThrown);
-                    //location.reload();
+                        text: 'Units'
+                    }
+                },
+                tooltip: {
+                    formatter: function () {
+                        return '<b>' + this.series.name + '</b><br/>' +
+                                this.point.y + ' ' + this.point.name.toLowerCase();
+                    }
                 }
-        });
-        
-    });
+            });
+
+       
+});
 </script>    
 @endsection

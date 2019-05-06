@@ -12,3 +12,4 @@
 */
 
 Route::get('/', ['as' => 'home', 'uses' => 'SessionController@show']);
+Route::get('/chart', ['as' => 'chart', 'uses' => 'SessionController@chart']);

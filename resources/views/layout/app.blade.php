@@ -26,7 +26,7 @@
         </div>
         </div>
         @include('includes.footer')
-        <script src="{{URL::asset('js/highcharts.js') }}"></script>
+        
         <!--<script src="http://code.highcharts.com/highcharts-more.js"></script>-->
     </body>
 </html>
