@@ -17,7 +17,7 @@ class SessionController extends Controller {
     public function index(Request $request) {
   
         $type = $request->input('type');
-        var_dump($type);exit();
+        //var_dump($type);exit();
         switch ($type) {
             case '1':
                 $response = $this->start($request);
@@ -25,6 +25,7 @@ class SessionController extends Controller {
                 break;
             case '2':
                 $response = $this->reply($request);
+                //var_dump($response);exit();
                 $this->sendResponse($response);
                 break;
             default:
@@ -53,7 +54,6 @@ class SessionController extends Controller {
     public function reply($request) {
         $text = $request->input('request');
         $name_parts = explode(' ', $text);
-
         if (isset($text)) {
             if ($text == "") {
                 return $this->menu();
@@ -77,7 +77,7 @@ class SessionController extends Controller {
     }
 
     public function menu() {
-        return "Please enter your Full Name. \r\nExample Chris Joe and NOT C. Joe\r\n"
+        return "Please enter your Full Name. \r\n\r\nExample Chris Joe and NOT C. Joe\r\n\r\n"
             . "1. Session is active.";
     }
 
@@ -102,7 +102,7 @@ class SessionController extends Controller {
             }
             Session::create($request->all());
             return true;
-        } else {
+        } else {           
             if ($session->type === 1) {
                 return $this->menu();
             }
@@ -148,11 +148,11 @@ class SessionController extends Controller {
                 $session->surname = $name_parts[1];
                 $session->type = $request->input('type');
                 if ($session->save()) {
-                    return "Your name has been saved successfully. \r\n0. Session is terminated.";
+                    return "Your name has been saved successfully. \r\n\r\n0. Session is terminated.";
                 }
                 return $this->menu();
             } elseif($session->type === 2) {
-                return "0. Session is terminated.";
+                return "Thank you. \r\n\r\n0. Session is terminated.";
             }
             return $this->init_msg();
         }
